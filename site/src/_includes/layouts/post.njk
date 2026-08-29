@@ -1,0 +1,18 @@
+---
+layout: layouts/base.njk
+---
+
+<article class="post">
+  <header class="post-header">
+    <p class="post-kicker">Blog / Data systems</p>
+    <h1>{{ title }}</h1>
+    <div class="post-meta">
+      <time datetime="{{ date }}">{{ displayDate }}</time>
+      <span>5 min read</span>
+    </div>
+  </header>
+  <div class="post-content">
+    {{ content | safe }}
+    <a class="post-back" href="/blog/">← Back to blog</a>
+  </div>
+</article>
