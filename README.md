@@ -1,187 +1,81 @@
-# Soumithri's Portfolio Website
+# Soumithri's Personal Website & Blog
 
-A modern, clean, and responsive personal portfolio website built with HTML, CSS, and JavaScript.
+A personal website and blog for **soumithri93.com**, built with [Eleventy](https://www.11ty.dev/) (static site generator) and [Tailwind CSS](https://tailwindcss.com/).
 
-## 🚀 Features
+## 🚀 How it works
 
-- **Responsive Design** - Looks great on all devices (mobile, tablet, desktop)
-- **Modern UI** - Clean and professional design with gradient accents
-- **Smooth Animations** - Fade-in effects and hover animations
-- **Portfolio Section** - Showcase your best projects
-- **Blog Section** - Share your thoughts and knowledge
-- **About Section** - Tell your story
-- **Contact Form** - Let visitors get in touch
-- **Mobile Menu** - Hamburger menu for mobile devices
-- **Fast Loading** - Lightweight and optimized
+This is a **static site** — no server, no database. You write content as plain **Markdown**, and an automated build turns it into fast HTML files that get deployed to **GitHub Pages**.
 
-## 📁 Project Structure
+**Your workflow:**
+1. Write a blog post as a Markdown file in `site/src/posts/`
+2. Commit and push to `main`
+3. GitHub Actions automatically builds and deploys the site
+4. Live at `https://www.soumithri93.com`
+
+No coding required — just write Markdown and push.
+
+## 📁 Project structure
 
 ```
 website-v2/
-├── index.html          # Main homepage
-├── styles.css          # Global styles
-├── script.js           # JavaScript interactivity
-└── blog/
-    ├── post1.html      # Sample blog post 1
-    ├── post2.html      # Sample blog post 2
-    ├── post3.html      # Sample blog post 3
-    └── blog.css        # Blog-specific styles
+└── site/                        # The Eleventy site (source of truth)
+    ├── .eleventy.js             # Eleventy config
+    ├── package.json             # Build scripts & dependencies
+    ├── .github/workflows/deploy.yml  # Auto-deploy to GitHub Pages
+    └── src/
+        ├── index.md             # Homepage
+        ├── work.md              # Work page
+        ├── research.md          # Research page
+        ├── contact.md           # Contact page (with form)
+        ├── blog/index.md        # Blog listing page
+        ├── posts/               # ← Write blog posts here (Markdown)
+        │   └── welcome.md       # Example post
+        ├── _includes/           # Layouts & partials (HTML templates)
+        └── styles/input.css     # Tailwind + custom styles
 ```
 
-## 🎨 Customization Guide
+## ✍️ Writing a blog post
 
-### 1. Update Your Information
+1. Create a new file in `site/src/posts/`, e.g. `my-new-post.md`
+2. Add front matter at the top:
+   ```markdown
+   ---
+   layout: layouts/post.njk
+   title: "My Post Title"
+   date: 2026-08-30
+   displayDate: "30 AUG 2026"
+   ---
+   ```
+3. Write your content in Markdown below the front matter
+4. Commit and push — the site auto-deploys
 
-**In `index.html`:**
-- Replace "Soumithri" with your name
-- Update the tagline in the hero section
-- Modify skills, social links, and about text
+## 🛠 Local development
 
-**Update Social Links:**
-```html
-<a href="https://github.com/yourprofile" target="_blank">
-    <i class="fab fa-github"></i> GitHub
-</a>
+```bash
+cd site
+npm install
+npm run dev        # starts dev server at http://localhost:8080
 ```
 
-### 2. Add Your Projects
+To build a production version:
 
-Replace the three sample projects in the "Work" section:
-```html
-<div class="work-card">
-    <div class="work-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
-    <div class="work-content">
-        <h3>Your Project Name</h3>
-        <p>Your project description</p>
-        <div class="tags">
-            <span>Technology</span>
-            <span>Framework</span>
-        </div>
-        <a href="your-project-link" class="work-link">View Project →</a>
-    </div>
-</div>
+```bash
+cd site
+npm run build      # outputs to site/_site/
 ```
 
-### 3. Add More Blog Posts
+## 🌐 Deployment
 
-Create new HTML files in the `blog/` folder following the structure of `post1.html`, `post2.html`, and `post3.html`.
+Deployment is fully automated via **GitHub Actions** (see `site/.github/workflows/deploy.yml`). Every push to `main` triggers a build and deploy to **GitHub Pages**.
 
-Then update the blog cards in `index.html`:
-```html
-<article class="blog-card">
-    <div class="blog-meta">
-        <span class="date">Your Date</span>
-        <span class="read-time">X min read</span>
-    </div>
-    <h3>Your Blog Post Title</h3>
-    <p>Your post summary</p>
-    <a href="blog/your-post.html" class="read-more">Read More →</a>
-</article>
-```
+The custom domain `www.soumithri93.com` is configured via the `CNAME` file in `site/src/`.
 
-### 4. Customize Colors
+## 📧 Contact form
 
-Edit the CSS variables in `styles.css`:
-```css
-:root {
-    --primary: #667eea;      /* Main brand color */
-    --secondary: #764ba2;    /* Secondary color */
-    --accent: #f5576c;       /* Accent color */
-    /* ... other colors ... */
-}
-```
-
-### 5. Update Meta Information
-
-In `index.html`, update:
-```html
-<title>Your Name - Portfolio</title>
-```
-
-### 6. Add Favicon
-
-Add a favicon to the `<head>` section:
-```html
-<link rel="icon" type="image/png" href="favicon.png">
-```
-
-## 📱 Responsive Breakpoints
-
-- **Mobile**: 480px and below
-- **Tablet**: 481px - 768px
-- **Desktop**: 769px and above
-
-## 🔧 Features to Enhance
-
-### 1. **Contact Form Integration**
-Currently shows a confirmation alert. To make it functional:
-- Use a backend service like Formspree, Netlify Forms, or SendGrid
-- Or use a static site service like Vercel or Netlify with built-in form handling
-
-### 2. **Dark Mode**
-Add a dark mode toggle by implementing additional CSS and JavaScript:
-```css
-body.dark-mode { /* dark styles */ }
-```
-
-### 3. **Search Functionality**
-Add a search feature for blog posts as your collection grows.
-
-### 4. **Dynamic Content Loading**
-Use JavaScript or a static site generator to load content dynamically.
-
-### 5. **Performance Optimization**
-- Optimize images using tools like TinyPNG
-- Minify CSS and JavaScript
-- Use a CDN for faster delivery
-
-## 🚢 Deployment Options
-
-### Netlify (Recommended for beginners)
-1. Push code to GitHub
-2. Connect GitHub to Netlify
-3. Deploy with automatic updates on push
-
-### Vercel
-1. Connect your GitHub repository
-2. Deploy with one click
-3. Automatic deployments on push
-
-### GitHub Pages
-1. Push code to a GitHub repository
-2. Enable GitHub Pages in repository settings
-3. Access at `username.github.io`
-
-### Traditional Hosting
-Upload files via FTP to your hosting provider.
-
-## 📝 Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
+The contact form uses [Formspree](https://formspree.io/) to deliver submissions to your email. To activate it:
+1. Create a free form at formspree.io
+2. Replace the form ID in `site/src/contact.md` (`https://formspree.io/f/your-form-id`)
 
 ## 📄 License
 
-This template is free to use for personal projects. Modify and customize as needed!
-
-## 💡 Tips
-
-1. **Update regularly** - Keep your portfolio fresh with new projects and blog posts
-2. **Test on devices** - Always test on real phones and tablets
-3. **Keep it clean** - Avoid cluttering; less is more
-4. **Mobile first** - Design for mobile, then enhance for desktop
-5. **Fast loading** - Optimize images and minimize external requests
-
-## 🤝 Contributing
-
-Feel free to customize and improve this template!
-
-## 📧 Need Help?
-
-Check the inline comments in the code for additional guidance and explanations.
-
----
-
-Happy coding! 🎉
+Personal project. Free to use and modify.
