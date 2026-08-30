@@ -66,7 +66,7 @@ npm run build      # outputs to site/_site/
 
 ## 🌐 Deployment
 
-Deployment is fully automated via **GitHub Actions** (see `site/.github/workflows/deploy.yml`). Every push to `main` triggers a build and deploy to **GitHub Pages**.
+Deployment is fully automated via **GitHub Actions** (see `.github/workflows/deploy.yml`). Every push to `main` triggers a build and deploy to **GitHub Pages**.
 
 The custom domain `www.soumithri93.com` is configured via the `CNAME` file in `site/src/`.
 
