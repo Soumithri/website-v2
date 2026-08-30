@@ -10,7 +10,7 @@ title: "Contact"
 </section>
 
 <section id="contact" class="contact-form">
-  <form action="https://formspree.io/f/your-form-id" method="POST">
+  <form action="https://formspree.io/f/xkjnglvj" method="POST">
     <div class="form-row">
       <div class="form-field">
         <label for="name">Name</label>
